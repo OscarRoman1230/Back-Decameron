@@ -104,6 +104,15 @@ class RoomController extends Controller
                 'quantity' => 'required|integer|min:1',
             ]);
 
+            $hotel = Hotel::findOrFail($data['id_hotel']);
+            $currentRooms = Room::where('id_hotel', $data['id_hotel'])->sum('quantity');
+
+            if ($currentRooms + $data['quantity'] > $hotel->number_rooms) {
+                return response()->json([
+                    'error' => 'La cantidad de habitaciones supera el máximo permitido para este hotel'
+                ], 400);
+            }
+
             $room = Room::findOrFail($id);
 
             $room->update($data);

@@ -98,9 +98,9 @@ class RoomController extends Controller
     {
         try {
             $data = $request->validate([
-                'id_hotel' => 'required|exists:hotels,id_hotel',
-                'id_type_room' => 'required|exists:room_types,id_type_room',
-                'id_accommodation' => 'required|exists:accommodations,id_accommodation',
+                'id_hotel' => 'required|exists:hotels,id',
+                'id_type_room' => 'required|exists:room_types,id',
+                'id_accommodation' => 'required|exists:accommodations,id',
                 'quantity' => 'required|integer|min:1',
             ]);
 

@@ -70,7 +70,11 @@ class RoomController extends Controller
 
             return response()->json($room, 201);
         } catch (\Exception $e) {
-            return response()->json(['error', $e->getMessage()], 400);
+            return response()->json(json_encode([
+                'message' => 'Error al crear la habitación, valida los datos y recuerda que no puedes repetir habitaciones con una misma acomodación',
+                'status' => 400,
+                'error' => $e->getMessage()
+            ]), 400);
         }
     }
 
@@ -106,7 +110,11 @@ class RoomController extends Controller
 
             return response()->json($room, 200);
         } catch (\Exception $e) {
-            return response()->json(['error', $e->getMessage()], 400);
+            return response()->json(json_encode([
+                'message' => 'Error al actualizar la habitación, valida los datos y recuerda que no puedes repetir habitaciones con una misma acomodación',
+                'status' => 400,
+                'error' => $e->getMessage()
+            ]), 400);
         }
     }
 
